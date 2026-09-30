@@ -1,4 +1,6 @@
 
+import questionary
+
 from banco_dados import conectar
 
 
@@ -217,3 +219,18 @@ def apagar_cliente():
     cursor.close()
 
     conexao.close()
+
+
+def menu():
+    menus = ["Consultar", "Cadastrar", "Editar", "Apagar", "Voltar"]
+    opcao_desejada = ""
+    while opcao_desejada != "Voltar":
+        opcao_desejada = questionary.select("Submenu de Clientes", choices=menus).ask()
+        if opcao_desejada == "Consultar":
+            consultar_clientes()
+        elif opcao_desejada == "Cadastrar":
+            cadastrar_cliente()
+        elif opcao_desejada == "Editar":
+            editar_cliente()
+        elif opcao_desejada == "Apagar":
+            apagar_cliente()

@@ -1,3 +1,4 @@
+import questionary
 from rich.console import Console
 from rich.table import Table
 from requests import get
@@ -80,3 +81,14 @@ def cadastrar_fornecedor():
             """, (cnpj, razao_social, nome_fantasia, cep, numero))
             conexao.commit()
     print("Fornecedor cadastrado com sucesso")
+
+
+def menu():
+    menus = ["Consultar", "Cadastrar", "Voltar"]
+    opcao_desejada = ""
+    while opcao_desejada != "Voltar":
+        opcao_desejada = questionary.select("Submenu de Fornecedores", choices=menus).ask()
+        if opcao_desejada == "Consultar":
+            consultar_fornecedores()
+        elif opcao_desejada == "Cadastrar":
+            cadastrar_fornecedor()
